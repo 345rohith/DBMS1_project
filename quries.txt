@@ -1,0 +1,25 @@
+4th Answer:
+
+SELECT citationid_2, COUNT(*) as n FROM citation
+GROUP BY citationid_2
+ORDER BY n DESC
+LIMIT 20;
+
+2nd Answer:
+
+SELECT id_1,citationid_2,paper_title,year_of_publication,venue
+FROM citation NATURAL JOIN research_paper WHERE research_paper.id=citation.citationid_2
+ORDER BY id_1 ASC
+
+1st Answer:
+
+SELECT citationid_2,id_1,paper_title,year_of_publication,venue
+FROM citation NATURAL JOIN research_paper WHERE research_paper.id=citation.id_1
+ORDER BY citationid_2 ASC
+
+3rd Answer:
+
+SELECT b.citationid_2 AS X,citation.id_1 AS Y
+FROM citation JOIN citation AS b
+ON citation.citationid_2 =b.id_1
+ORDER BY X ASC
